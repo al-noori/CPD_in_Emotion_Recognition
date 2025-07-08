@@ -1,0 +1,36 @@
+NTPTime,speech,condition,robot,gesture,speech_eng,label_emotion,label_mood,scenario,TAG,emotion_arousal,emotion_valence,mood_arousal,mood_valence,emotion,mood,group,emotion_HRI
+1586120.0,,neutral,tiago,,,mood_pre,mood_pre,,first_baseline,2.0,5.0,4,4,HPVLA,HPVHA,,
+1776222.0,,neutral,tiago,,,mood_pre,mood_pre,,first_baseline,2.0,5.0,4,4,HPVLA,HPVHA,,
+1939167.0,,neutral,tiago,,,,,,HRI_start,,,4,4,,HPVHA,,
+1963847.07006836,Guten Tag!,neutral,tiago,,Welcome!,,mood_pre,welcoming,,,,4,4,,HPVHA,,
+1965077.66381836,Zu welchem Produkt kann ich Sie beraten?,neutral,tiago,,Which product can I offer you advice on?,,mood_pre,welcoming,,,,4,4,,HPVHA,,
+1972683.0190429688,Welche Bohrarbeit möchten Sie durchführen?,neutral,tiago,,What drilling work do you want to do?,,during_drill,drill,,,,5,4,,HPVHA,,
+1988324.824951172,Für massive Wände eignen sich Schlagbohrmaschinen besonders gut. Wir haben zwei Maschinen vorrätig.,neutral,tiago,,Percussion drilling machines are particularly suitable for solid walls. We have two machines in stock.,,during_drill,drill,,,,5,4,,HPVHA,,
+1992646.630859375,Die Maschine von Xi Lix ist aktuell die günstigste im Sortiment.,neutral,tiago,,Xilix's machine is currently the cheapest in the range.,,during_drill,drill,,,,5,4,,HPVHA,,
+1996649.831787109,"Möchten Sie wissen, wie sich die beiden Bohrmaschinen unterscheiden?",neutral,tiago,,Would you like to know how the two drills differ?,,during_drill,drill,,,,5,4,,HPVHA,,
+2004638.5859375,"Die Maschine von Ada Tronik ist aktuell in unserem Angebotsprospekt und kostet 100€, die Maschine von Xi Lix ist etwas günstiger und kostet 65€.",neutral,tiago,,"The machine from Adatronik is currently on sale in our brochure and costs 100€, the machine from Xilix is slightly cheaper and costs 65€.",,during_drill,drill,,,,5,4,,HPVHA,,
+2022924.8698730469,"Die Maschine von Xi Lix hat ein offizielles Sicherheitssiegel, was bei Ada Tronik nicht der Fall ist.",neutral,tiago,,"Xilix's machine has an official security seal, which is not the case with Adatronik.",,during_drill,drill,,,,5,4,,HPVHA,,
+2034978.6088867188,"Die Bohrmaschine von Xi Lix ist leiser, als die Maschine von Ada Tronik.",neutral,tiago,,The Xilix drill is quieter than Adatronik's machine.,,during_drill,drill,,,,5,4,,HPVHA,,
+2045100.7299804688,"Die Bohrmaschine von Xi Lix ist aus umweltfreundlichen Materialien hergestellt, bei Ada Tronik werden hierzu keine Angaben gemacht.",neutral,tiago,,The drill from Xilix is made of environmentally friendly materials. Adatronik does not provide any information on this.,,during_drill,drill,,,,5,4,,HPVHA,,
+2058175.473876953,Ich lasse Ihnen das Produkt gerne an der Kasse hinterlegen.,neutral,tiago,,I will gladly deposit the product for you at the checkout.,,during_drill,drill,,,,5,4,,HPVHA,,
+2062260.4069824216,Haben Sie bereits von unserem Kundenkonto gehört?,neutral,tiago,,Have you heard about our customer account?,,during_customeraccount,customeraccount,,,,5,3,,NEUTRAL,,
+2072729.5849609373,Dann benötige ich Ihren Namen und Ihre E-Mail-Adresse.,neutral,tiago,,"Then, I need your name and email address.",at_customeraccount_name,during_customeraccount,customeraccount,,5.0,2.0,5,3,HNVHA,NEUTRAL,16.0,HNVHA
+2079115.485839844,Für Informationen über den Datenschutz besuchen Sie bitte unsere Webseite.,neutral,tiago,,"For information about data protection, please visit our website.",at_customeraccount_consent,during_customeraccount,customeraccount,,4.0,2.0,5,3,HNVHA,NEUTRAL,17.0,HNVHA
+2085577.3198242188,Was ist Ihr Name?,neutral,tiago,,What is your name?,at_customeraccount_name,during_customeraccount,customeraccount,,5.0,2.0,5,3,HNVHA,NEUTRAL,18.0,HNVHA
+2092099.751953125,"Tut mir Leid, das weiß ich nicht.",neutral,tiago,,,,,,,,,5,3,,NEUTRAL,,
+2098077.9060058594,Was ist Ihr Name?,neutral,tiago,,What is your name?,at_customeraccount_name,during_customeraccount,customeraccount,,5.0,2.0,5,3,HNVHA,NEUTRAL,20.0,HNVHA
+2102665.326904297,Und wie ist ihre E-Mail-Adresse?,neutral,tiago,,And what is your email address?,,during_customeraccount,customeraccount,,,,5,3,,NEUTRAL,,
+2116833.811767578,Ok,neutral,tiago,,,,,,,,,5,3,,NEUTRAL,,
+2120704.2517089844,"Das wars schon, der Rabatt wird ihnen automatisch an der Kasse angerechnet.",neutral,tiago,,That's it. The discount will be credited to you automatically at checkout.,,during_customeraccount,customeraccount,,,,5,3,,NEUTRAL,,
+2125681.7768554688,"Steht noch etwas auf Ihrer Einkaufsliste, bei dem ich Ihnen helfen kann?",neutral,tiago,,Is there anything else I can help you with on your shopping list?,,,,,,,5,3,,NEUTRAL,,
+2135879.2768554688,Zum Entfernen von Schimmel haben wir nur dieses Produkt im Sortiment.,neutral,tiago,,"To remove mold, we have only this product in the store.",,during_mold_remover,mold_remover,,,,5,3,,NEUTRAL,,
+2140103.8198242188,Möchten Sie den Schimmelentferner kaufen?,neutral,tiago,,Do you want to buy the mold remover?,,during_mold_remover,mold_remover,,,,5,3,,NEUTRAL,,
+2145892.6689453125,"Ok, ich werde ihnen die Flasche reichen und meine Hand öffnen. Bitte seien Sie bereit, die Flasche zu übernehmen.",neutral,tiago,,"Okay, I will hand over the bottle to you and open my hand. Please be prepared to take the bottle.",at_mold_remover_handover,during_mold_remover,mold_remover,,4.0,5.0,5,3,HPVHA,NEUTRAL,27.0,HPVHA
+2150152.485839844,,neutral,tiago,grab,,at_mold_remover_handover,during_mold_remover,mold_remover,,4.0,5.0,5,3,HPVHA,NEUTRAL,27.0,
+2158497.9118652344,,neutral,tiago,handover,,at_mold_remover_handover,during_mold_remover,mold_remover,,4.0,5.0,5,3,HPVHA,NEUTRAL,27.0,
+2169493.326904297,,neutral,tiago,neutral,,at_mold_remover_handover,during_mold_remover,mold_remover,,4.0,5.0,5,3,HPVHA,NEUTRAL,27.0,
+2173187.100830078,Kann ich Ihnen noch mit etwas helfen?,neutral,tiago,,Is there anything else I can help you with?,,,,,,,5,3,,NEUTRAL,,
+2177695.0546875,Dann auf Wiedersehen und einen schönen Tag!,neutral,tiago,,"Goodbye, and have a nice day!",at_goodbye,,goodbye,,2.0,5.0,5,3,HPVLA,NEUTRAL,29.0,HPVLA
+2209711.0,,neutral,tiago,,,,,,HRI_end,,,5,3,,NEUTRAL,,
+3902929.0,,neutral,tiago,,,mood_post,mood_post,,second_baseline,2.0,5.0,3,4,HPVLA,NEUTRAL,,
+4100422.0,,neutral,tiago,,,mood_post,mood_post,,second_baseline,2.0,5.0,3,4,HPVLA,NEUTRAL,,

@@ -1,0 +1,41 @@
+NTPTime,speech,condition,robot,gesture,speech_eng,label_emotion,label_mood,scenario,TAG,emotion_arousal,emotion_valence,mood_arousal,mood_valence,emotion,mood,group,emotion_HRI
+888103.0,,neutral,tiago,,,mood_pre,mood_pre,,first_baseline,2.0,2.0,1,4,HNVLA,HPVLA,,
+1071158.0,,neutral,tiago,,,mood_pre,mood_pre,,first_baseline,2.0,2.0,1,4,HNVLA,HPVLA,,
+1200930.0,,neutral,tiago,,,,,,HRI_start,,,1,4,,HPVLA,,
+1215589.7670898438,Guten Tag!,neutral,tiago,,Welcome!,,mood_pre,welcoming,,,,1,4,,HPVLA,,
+1216986.171875,Zu welchem Produkt kann ich Sie beraten?,neutral,tiago,,Which product can I offer you advice on?,,mood_pre,welcoming,,,,1,4,,HPVLA,,
+1224753.96484375,Welche Bohrarbeit möchten Sie durchführen?,neutral,tiago,,What drilling work do you want to do?,,during_drill,drill,,,,4,1,,HNVHA,,
+1234565.6091308594,Für massive Wände eignen sich Schlagbohrmaschinen besonders gut. Wir haben zwei Maschinen vorrätig.,neutral,tiago,,Percussion drilling machines are particularly suitable for solid walls. We have two machines in stock.,,during_drill,drill,,,,4,1,,HNVHA,,
+1243692.3088378906,"Möchten Sie wissen, wie sich die beiden Bohrmaschinen unterscheiden?",neutral,tiago,,Would you like to know how the two drills differ?,,during_drill,drill,,,,4,1,,HNVHA,,
+1248459.4599609375,"Die Maschine von Ada Tronik ist aktuell in unserem Angebotsprospekt und kostet 100€, die Maschine von Xi Lix ist etwas günstiger und kostet 65€.",neutral,tiago,,"The machine from Adatronik is currently on sale in our brochure and costs 100€, the machine from Xilix is slightly cheaper and costs 65€.",,during_drill,drill,,,,4,1,,HNVHA,,
+1265572.4189453125,"Die Bohrmaschine von Xi Lix ist leiser, als die Maschine von Ada Tronik.",neutral,tiago,,The Xilix drill is quieter than Adatronik's machine.,,during_drill,drill,,,,4,1,,HNVHA,,
+1279388.873046875,"Tut mir Leid, das weiß ich nicht.",neutral,tiago,,,,,,,,,4,1,,HNVHA,,
+1282089.6079101562,Welche weiteren Aspekte sind ihnen bei der Auswahl der Bohrmaschine noch wichtig?,neutral,tiago,,Which further aspects of selecting a drill are important for you?,,during_drill,drill,,,,4,1,,HNVHA,,
+1289260.0,"Die Maschine von Xi Lix hat ein offizielles Sicherheitssiegel, was bei Ada Tronik nicht der Fall ist.",neutral,tiago,,"Xilix's machine has an official security seal, which is not the case with Adatronik.",,during_drill,drill,,,,4,1,,HNVHA,,
+1300062.0881347656,"Die Bohrmaschine von Xi Lix ist aus umweltfreundlichen Materialien hergestellt, bei Ada Tronik werden hierzu keine Angaben gemacht.",neutral,tiago,,The drill from Xilix is made of environmentally friendly materials. Adatronik does not provide any information on this.,,during_drill,drill,,,,4,1,,HNVHA,,
+1311815.0729980469,Sind Sie an einer Empfehlung interessiert?,neutral,tiago,,Are you interested in a recommendation?,,during_drill,drill,,,,4,1,,HNVHA,,
+1315576.5959472656,Ich würde Ihnen die Bohrmaschine von Xi Lix empfehlen. Sie ist günstiger und hat ein offizielles Sicherheitssiegel. Mit dem Kauf schützen Sie die Umwelt und sie ist zudem leiser.,neutral,tiago,,"I recommend the drill from Xilix. It is cheaper and has an official safety seal. By buying it, you protect the environment, and it is also quieter.",at_drillrecommendation,during_drill,drill,,4.0,1.0,4,1,HNVHA,HNVHA,16.0,HNVHA
+1334300.1000976562,Für welches Produkt haben Sie sich entschieden?,neutral,tiago,,Which product did you choose?,,during_drill,drill,,,,4,1,,HNVHA,,
+1338844.70703125,Ich lasse Ihnen das Produkt gerne an der Kasse hinterlegen.,neutral,tiago,,I will gladly deposit the product for you at the checkout.,,during_drill,drill,,,,4,1,,HNVHA,,
+1342146.0610351562,"Sie können einen Rabatt von 10% bekommen, wenn Sie ein Kundenkonto eröffnen.",neutral,tiago,,You will receive a 10% discount if you create a customer account.,,during_customeraccount,customeraccount,,,,4,1,,HNVHA,,
+1352057.6169433594,Dann benötige ich Ihren Namen und Ihre E-Mail-Adresse.,neutral,tiago,,"Then, I need your name and email address.",at_customeraccount_name,during_customeraccount,customeraccount,,5.0,1.0,4,1,HNVHA,HNVHA,20.0,HNVHA
+1359158.6630859375,Für Informationen über den Datenschutz besuchen Sie bitte unsere Webseite.,neutral,tiago,,"For information about data protection, please visit our website.",at_customeraccount_consent,during_customeraccount,customeraccount,,4.0,2.0,4,1,HNVHA,HNVHA,21.0,HNVHA
+1366760.7470703125,Darf ich ihnen ein Kundenkonto einrichten?,neutral,tiago,,May I set up a customer account for you?,,during_customeraccount,customeraccount,,,,4,1,,HNVHA,,
+1375010.5759277344,Ja,neutral,tiago,,,,,,,,,4,1,,HNVHA,,
+1378957.6408691406,Dann benötige ich Ihren Namen und Ihre E-Mail-Adresse.,neutral,tiago,,"Then, I need your name and email address.",at_customeraccount_name,during_customeraccount,customeraccount,,5.0,1.0,4,1,HNVHA,HNVHA,24.0,HNVHA
+1387145.3759765625,Und wie ist ihre E-Mail-Adresse?,neutral,tiago,,And what is your email address?,,during_customeraccount,customeraccount,,,,4,1,,HNVHA,,
+1392955.6860351562,Vielen Dank.,neutral,tiago,,Thank you very much.,,during_customeraccount,customeraccount,,,,4,1,,HNVHA,,
+1394273.7919921875,"Das wars schon, der Rabatt wird ihnen automatisch an der Kasse angerechnet.",neutral,tiago,,That's it. The discount will be credited to you automatically at checkout.,,during_customeraccount,customeraccount,,,,4,1,,HNVHA,,
+1400109.1010742188,"Steht noch etwas auf Ihrer Einkaufsliste, bei dem ich Ihnen helfen kann?",neutral,tiago,,Is there anything else I can help you with on your shopping list?,,,,,,,4,1,,HNVHA,,
+1406751.4011230469,Zum Entfernen von Schimmel haben wir nur dieses Produkt im Sortiment.,neutral,tiago,,"To remove mold, we have only this product in the store.",,during_mold_remover,mold_remover,,,,4,1,,HNVHA,,
+1413238.0322265625,Möchten Sie den Schimmelentferner kaufen?,neutral,tiago,,Do you want to buy the mold remover?,,during_mold_remover,mold_remover,,,,4,1,,HNVHA,,
+1418178.666015625,Der Schimmelentferner kostet 6 Euro 10.,neutral,tiago,,The mold remover costs 6 euros 10 cents.,,during_mold_remover,mold_remover,,,,4,1,,HNVHA,,
+1425780.7861328125,Ja,neutral,tiago,,,,,,,,,4,1,,HNVHA,,
+1429450.6181640625,"Ok, ich werde ihnen die Flasche reichen und meine Hand öffnen. Bitte seien Sie bereit, die Flasche zu übernehmen.",neutral,tiago,,"Okay, I will hand over the bottle to you and open my hand. Please be prepared to take the bottle.",at_mold_remover_handover,during_mold_remover,mold_remover,,2.0,4.0,4,1,HPVLA,HNVHA,33.0,HPVLA
+1437032.2939453125,,neutral,tiago,grab,,at_mold_remover_handover,during_mold_remover,mold_remover,,2.0,4.0,4,1,HPVLA,HNVHA,33.0,
+1446107.4880371094,,neutral,tiago,handover,,at_mold_remover_handover,during_mold_remover,mold_remover,,2.0,4.0,4,1,HPVLA,HNVHA,33.0,
+1453799.4829101562,,neutral,tiago,neutral,,at_mold_remover_handover,during_mold_remover,mold_remover,,2.0,4.0,4,1,HPVLA,HNVHA,33.0,
+1457865.0041503906,Kann ich Ihnen noch mit etwas helfen?,neutral,tiago,,Is there anything else I can help you with?,,,,,,,4,1,,HNVHA,,
+1461457.9958496094,Dann auf Wiedersehen und einen schönen Tag!,neutral,tiago,,"Goodbye, and have a nice day!",at_goodbye,,goodbye,,2.0,2.0,4,1,HNVLA,HNVHA,35.0,HNVLA
+3376279.0,,neutral,tiago,,,mood_post,mood_post,,second_baseline,2.0,2.0,2,4,HNVLA,HPVLA,,
+3566210.0,,neutral,tiago,,,mood_post,mood_post,,second_baseline,2.0,2.0,2,4,HNVLA,HPVLA,,
