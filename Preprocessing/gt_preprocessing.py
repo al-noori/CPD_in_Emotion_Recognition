@@ -18,8 +18,6 @@ entry_column_map = {
     'at_goodbye': ('at_good-bye_valence', 'at_good-bye_arousal'),
 }
 
-
-
 for subfolder_name in os.listdir(parent_folder):
     subfolder_path = os.path.join(parent_folder, subfolder_name)
 
@@ -70,7 +68,3 @@ for subfolder_name in os.listdir(parent_folder):
         df.drop(columns=['group'])
 
         df.to_csv(csv_path, index=False)
-
-    # Fill in missing emotion values
-   #    for entry, (valence_col, arousal_col) in entry_column_map.items():
-

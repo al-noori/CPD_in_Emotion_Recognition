@@ -85,7 +85,6 @@ def point_score(Y, psi, window):
     endR = np.arange(2 * window - 1, n)
     index = list(zip(startL, endL, startR, endR))
     index = np.array(index).flatten()
-    print("index: ", str(index))
     for i in range(0, len(index) - 1, 2):
         start, end = index[i] , index[i + 1]
         segment = ndata[start:end, :]
@@ -106,10 +105,7 @@ def point_score(Y, psi, window):
             cscore.append(nom / denom)
         score.append(1 - np.mean(cscore))
     score = [0] * k + score  # prepend zeros for first k segments (only 1 here)
-    print("SCORE len", len(score)-1)
     pscore = np.zeros(int(n))
-    print("Pscore len", pscore.shape)
-    print("loop len" , len(index) - 2 * window)
     for i in range(0, len(score)):
         pscore[i + window ] = score[i]
 

@@ -3,7 +3,7 @@ import pandas as pd
 import shutil
 from scipy.stats import zscore
 import stat
-parent_folder = r"C:\Users\A. Lowejatan Noori\Desktop\test\anonymized-23-10-2023"
+parent_folder = r"C:\Users\A. Lowejatan Noori\Desktop\ComTech1\AFFECT-HRI\anonymized-23-10-2023"
 
 def handle_remove_readonly(func, path, exc_info):
     os.chmod(path, stat.S_IWRITE)

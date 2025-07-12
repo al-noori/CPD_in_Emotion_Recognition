@@ -24,6 +24,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\AFFECT-HRI\anonymized-23-10-2023\175b11b0e540550823b8f57473c01e5361301c0d6c54769c94bea329b34d18d9\ACC.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\AFFECT-HRI\anonymized-23-10-2023\175b11b0e540550823b8f57473c01e5361301c0d6c54769c94bea329b34d18d9\BVP.csv">
           <value>
             <Attribute>
@@ -269,7 +276,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\AFFECT-HRI\anonymized-23-10-2023\b1d5f67d3ee6e58b85238a74e11cbb7a2b1881b831731ae2eb2ed1792e121638\BVP.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\AFFECT-HRI\anonymized-23-10-2023\b1d5f67d3ee6e58b85238a74e11cbb7a2b1881b831731ae2eb2ed1792e121638\GSR.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\AFFECT-HRI\anonymized-23-10-2023\b2e8d65dbdad1dc5650ad517a2cdf7f80435120da845df4f4f736e9baac2d690\BVP.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

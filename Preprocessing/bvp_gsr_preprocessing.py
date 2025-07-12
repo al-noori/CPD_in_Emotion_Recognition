@@ -4,7 +4,7 @@ import numpy as np
 from scipy.stats import zscore
 from neurokit2 import ppg_clean, eda_clean
 from biosppy import bvp
-
+from path import PARENT_FOLDER as parent_folder
 def preprocess_gsr(gsr_d, fs=4):
     eda_cleaning = eda_clean(gsr_d['GSR'].values, sampling_rate=fs)
     gsr_d['GSR_clean'] = pd.Series(eda_cleaning)
@@ -24,8 +24,9 @@ def process_folder(folder):
     bvp = pd.read_csv(bvp_path)
     gsr = pd.read_csv(gsr_path)
 
-
+    bvp = bvp[['NTPTime', 'BVP']]
     # Process signals
+    gsr = gsr[['NTPTime', 'GSR']]
     preprocess_gsr(gsr)
     preprocess_bvp(bvp)
 
@@ -33,7 +34,6 @@ def process_folder(folder):
     bvp.to_csv(bvp_path, index=False)
     gsr.to_csv(gsr_path, index=False)
 
-parent_folder = r"C:\Users\A. Lowejatan Noori\Desktop\ComTech1\AFFECT-HRI\anonymized-23-10-2023"
 
 for subfolder_name in os.listdir(parent_folder):
     subfolder_path = os.path.join(parent_folder, subfolder_name)

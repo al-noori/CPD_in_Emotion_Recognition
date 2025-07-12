@@ -11,8 +11,8 @@ def merge(folder):
     gsr = pd.read_csv(gsr_path)
     gt = pd.read_csv(gt_path)
 
-    start_ntp = gt.loc[gt['TAG'] == 'HRI_start']['NTPTime'].min() - 10000
-    end_ntp = gt.loc[gt['label_emotion']== 'at_goodbye']['NTPTime'].max() + 10000
+    start_ntp = gt.loc[gt['TAG'] == 'HRI_start']['NTPTime'].min()
+    end_ntp = gt.loc[gt['label_emotion']== 'at_goodbye']['NTPTime'].max()
 
     gt = gt[['NTPTime','TAG','emotion_HRI']]
     bvp = bvp[['NTPTime', 'BVP', 'BVP_clean']]
@@ -24,16 +24,6 @@ def merge(folder):
     bvp['shortNTPTime'] = bvp['NTPTime'].where((bvp['NTPTime'] >= start_ntp) & (bvp['NTPTime'] <= end_ntp))
     gsr['shortNTPTime'] = gsr['NTPTime'].where((gsr['NTPTime'] >= start_ntp) & (gsr['NTPTime'] <= end_ntp))
 
-    # fill forward emotion_HRI for 0.5 to 4 seconds (avg. 2.25 s)
-    fill_ms = 2250
-    bvp_ms = 1000 / 64  # BVP sampling rate
-    gsr_ms = 1000 / 4   # GSR sampling rate
-
-    ffill_bvp = int(fill_ms / bvp_ms)  # BVP samples to fill
-    ffill_gsr = int(fill_ms / gsr_ms)  # GSR samples to fill
-
-    bvp['emotion_HRI'] = bvp['emotion_HRI'].ffill(limit=ffill_bvp)
-    gsr['emotion_HRI'] = gsr['emotion_HRI'].ffill(limit=ffill_gsr)
     gsr.to_csv(gsr_path,index=False)
     bvp.to_csv(bvp_path,index=False)
 
