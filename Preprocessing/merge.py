@@ -3,6 +3,7 @@ import pandas as pd
 
 
 def merge(folder):
+    print(folder)
     bvp_path = os.path.join(folder, "BVP.csv")
     gsr_path = os.path.join(folder, "GSR.csv")
     gt_path = os.path.join(folder, "ground_truth.csv")
@@ -17,6 +18,9 @@ def merge(folder):
     gt = gt[['NTPTime','TAG','emotion_HRI']]
     bvp = bvp[['NTPTime', 'BVP', 'BVP_clean']]
     gsr = gsr[['NTPTime', 'GSR', 'GSR_clean']]
+    gt['NTPTime'] = pd.to_numeric(gt['NTPTime'])
+    bvp['NTPTime'] = pd.to_numeric(bvp['NTPTime'])
+    gsr['NTPTime'] = pd.to_numeric(gsr['NTPTime'])
 
     bvp = pd.merge_ordered(bvp, gt, on='NTPTime')
     gsr = pd.merge_ordered(gsr, gt, on='NTPTime')

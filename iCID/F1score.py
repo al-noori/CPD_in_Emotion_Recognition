@@ -5,8 +5,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import os
+from ruptures import Pelt
 
-def mcpd(Y, win_size = 40, alpha = 1):
+def mcpd(Y, win_size=40, alpha=1):
     """
     Multiple Change Point Detection (MCPD) via iCID
     """
@@ -14,6 +15,14 @@ def mcpd(Y, win_size = 40, alpha = 1):
     threshold, _ = best_threshold(pscore, alpha)
     return np.where(pscore > threshold)[0], pscore, threshold
 
+def pelt_cpd(Y, model="rbf", pen=10):
+    """
+    Change point detection using PELT
+    """
+    algo = Pelt(model=model).fit(Y)
+    cp_indices = algo.predict(pen=pen)
+    # Remove the last point as ruptures returns length as last cp
+    return np.array(cp_indices[:-1])
 
 def compute_f1_by_participant(gt_dict, pred_dict, M=5):
     total_TP = 0
@@ -45,14 +54,20 @@ def compute_f1_by_participant(gt_dict, pred_dict, M=5):
     f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0.0
     return precision, recall, f1
 
+
 dataset_dir = r"C:\Users\A. Lowejatan Noori\Desktop\ComTech1\AFFECT-HRI\anonymized-23-10-2023"
 
 gt_gsr = {}
 pred_gsr = {}
+pred_gsr_pelt = {}
 gt_bvp = {}
 pred_bvp = {}
+pred_bvp_pelt = {}
 
 for participant_id in os.listdir(dataset_dir):
+    if not os.path.isdir(os.path.join(dataset_dir, participant_id)):
+        continue
+    print(participant_id)
     part_path = os.path.join(dataset_dir, participant_id)
 
     # Paths to CSVs
@@ -62,29 +77,81 @@ for participant_id in os.listdir(dataset_dir):
     bvp = pd.read_csv(bvp_path)
     gsr = pd.read_csv(gsr_path)
 
-    bvp_gt_changepoints =  bvp.index[bvp['emotion_HRI'].notna()].tolist()
-    gsr_gt_changepoints = gsr.index[gsr['emotion_HRI'].notna()].tolist()
+    # Filter and reset index so everything aligns with prediction inputs
+    gsr_valid = gsr[gsr['shortNTPTime'].notna()].reset_index(drop=True)
+    bvp_valid = bvp[bvp['shortNTPTime'].notna()].reset_index(drop=True)
 
+    # Get ground-truth changepoints by relative index
+    gsr_gt_changepoints = gsr_valid.index[gsr_valid['emotion_HRI'].notna()].tolist()
+    bvp_gt_changepoints = bvp_valid.index[bvp_valid['emotion_HRI'].notna()].tolist()
+
+    # Store in dictionary
     gt_gsr[participant_id] = gsr_gt_changepoints
     gt_bvp[participant_id] = bvp_gt_changepoints
 
-    Y = gsr['GSR_clean'].values[gsr['shortNTPTime'].notna()]
-    Y2 = bvp['BVP_clean'].values[bvp['shortNTPTime'].notna()]
+    # Extract signal arrays for detection
+    Y_gsr = gsr_valid['GSR_clean'].values.reshape(-1, 1)
+    Y_bvp = bvp_valid['BVP_clean'].values.reshape(-1, 1)
 
-    print(participant_id)
+    # MCPD predictions
+    cp_indices_gsr, pscore, threshold = mcpd(Y_gsr, win_size=10, alpha=1)
+    cp_indices_bvp, pscore2, threshold2 = mcpd(Y_bvp, win_size=300, alpha=1)
 
-    cp_indices_gsr, pscore, threshold = mcpd(Y.reshape(-1, 1), win_size=60, alpha=1)
-    cp_indices_bvp, pscore2, threshold2 = mcpd(Y2.reshape(-1, 1), win_size=300, alpha=2)
+    # PELT predictions (adjust penalty as needed)
+    cp_indices_gsr_pelt = pelt_cpd(Y_gsr, model="rbf", pen=10)
+    cp_indices_bvp_pelt = pelt_cpd(Y_bvp, model="rbf", pen=10)
 
-    pred_gsr[participant_id] = cp_indices_gsr
-    pred_bvp[participant_id] = cp_indices_bvp
+    # Store predictions
+    pred_gsr[participant_id] = cp_indices_gsr.tolist()
+    pred_bvp[participant_id] = cp_indices_bvp.tolist()
+    pred_gsr_pelt[participant_id] = cp_indices_gsr_pelt.tolist()
+    pred_bvp_pelt[participant_id] = cp_indices_bvp_pelt.tolist()
 
-P_gsr, R_gsr, F1_gsr = compute_f1_by_participant(gt_gsr, pred_gsr, M=12)
-P_bvp, R_bvp, F1_bvp = compute_f1_by_participant(gt_bvp, pred_bvp, M=32)
+    # Compute final F1 scores for MCPD
+    P_gsr, R_gsr, F1_gsr = compute_f1_by_participant(gt_gsr, pred_gsr, M=40)
+    P_bvp, R_bvp, F1_bvp = compute_f1_by_participant(gt_bvp, pred_bvp, M=640)
 
-print("GSR only:")
+    # Compute final F1 scores for PELT
+    P_gsr_pelt, R_gsr_pelt, F1_gsr_pelt = compute_f1_by_participant(gt_gsr, pred_gsr_pelt, M=40)
+    P_bvp_pelt, R_bvp_pelt, F1_bvp_pelt = compute_f1_by_participant(gt_bvp, pred_bvp_pelt, M=640)
+
+    print("IDK GSR only:")
+    print(f"  Precision: {P_gsr:.3f}, Recall: {R_gsr:.3f}, F1: {F1_gsr:.3f}")
+    print("IDK BVP only:")
+    print(f"  Precision: {P_bvp:.3f}, Recall: {R_bvp:.3f}, F1: {F1_bvp:.3f}")
+
+    print("\nPELT GSR only:")
+    print(f"  Precision: {P_gsr_pelt:.3f}, Recall: {R_gsr_pelt:.3f}, F1: {F1_gsr_pelt:.3f}")
+    print("PELT BVP only:")
+    print(f"  Precision: {P_bvp_pelt:.3f}, Recall: {R_bvp_pelt:.3f}, F1: {F1_bvp_pelt:.3f}")
+
+# Compute final F1 scores for MCPD
+P_gsr, R_gsr, F1_gsr = compute_f1_by_participant(gt_gsr, pred_gsr, M=40)
+P_bvp, R_bvp, F1_bvp = compute_f1_by_participant(gt_bvp, pred_bvp, M=640)
+
+# Compute final F1 scores for PELT
+P_gsr_pelt, R_gsr_pelt, F1_gsr_pelt = compute_f1_by_participant(gt_gsr, pred_gsr_pelt, M=40)
+P_bvp_pelt, R_bvp_pelt, F1_bvp_pelt = compute_f1_by_participant(gt_bvp, pred_bvp_pelt, M=640)
+
+print("IDK GSR only:")
 print(f"  Precision: {P_gsr:.3f}, Recall: {R_gsr:.3f}, F1: {F1_gsr:.3f}")
-print("BVP only:")
+print("IDK BVP only:")
 print(f"  Precision: {P_bvp:.3f}, Recall: {R_bvp:.3f}, F1: {F1_bvp:.3f}")
 
+print("\nPELT GSR only:")
+print(f"  Precision: {P_gsr_pelt:.3f}, Recall: {R_gsr_pelt:.3f}, F1: {F1_gsr_pelt:.3f}")
+print("PELT BVP only:")
+print(f"  Precision: {P_bvp_pelt:.3f}, Recall: {R_bvp_pelt:.3f}, F1: {F1_bvp_pelt:.3f}")
 
+
+'''
+IDK GSR only:
+  Precision: 0.029, Recall: 0.607, F1: 0.055
+IDK BVP only:
+  Precision: 0.002, Recall: 0.767, F1: 0.003
+
+PELT GSR only:
+  Precision: 0.289, Recall: 0.484, F1: 0.362
+PELT BVP only:
+  Precision: 0.026, Recall: 0.983, F1: 0.052
+'''

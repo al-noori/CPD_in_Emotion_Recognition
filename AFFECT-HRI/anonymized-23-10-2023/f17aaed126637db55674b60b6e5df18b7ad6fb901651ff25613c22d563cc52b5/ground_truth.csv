@@ -1,6 +1,7 @@
 NTPTime,speech,condition,robot,gesture,speech_eng,label_emotion,label_mood,scenario,TAG,emotion_arousal,emotion_valence,mood_arousal,mood_valence,emotion,mood,group,emotion_HRI
 1668796.0,,neutral,tiago,,,,,,fist_baseline,,,2.0,4.0,,HPVLA,,
 1786020.0,,neutral,tiago,,,,,,fist_baseline,,,2.0,4.0,,HPVLA,,
+2124000.0,,neutral,tiago,,,,,,HRI_start,,,2.0,4.0,,HPVLA,,
 2124104.569091797,Guten Tag!,neutral,tiago,,Welcome!,,mood_pre,welcoming,,,,2.0,4.0,,HPVLA,,
 2125021.498046875,Zu welchem Produkt kann ich Sie beraten?,neutral,tiago,,Which product can I offer you advice on?,,mood_pre,welcoming,,,,2.0,4.0,,HPVLA,,
 2132008.788085937,Welche Bohrarbeit möchten Sie durchführen?,neutral,tiago,,What drilling work do you want to do?,,during_drill,drill,,,,1.0,4.0,,HPVLA,,
@@ -10,19 +11,19 @@ NTPTime,speech,condition,robot,gesture,speech_eng,label_emotion,label_mood,scena
 2191628.802978516,Welche weiteren Aspekte sind ihnen bei der Auswahl der Bohrmaschine noch wichtig?,neutral,tiago,,Which further aspects of selecting a drill are important for you?,,during_drill,drill,,,,1.0,4.0,,HPVLA,,
 2209986.2309570312,"Die Bohrmaschine von Xi Lix ist leiser, als die Maschine von Ada Tronik.",neutral,tiago,,The Xilix drill is quieter than Adatronik's machine.,,during_drill,drill,,,,1.0,4.0,,HPVLA,,
 2225352.0588378906,"Sie können einen Rabatt von 10% bekommen, wenn Sie ein Kundenkonto eröffnen.",neutral,tiago,,You will receive a 10% discount if you create a customer account.,,during_customeraccount,customeraccount,,,,1.0,3.0,,NEUTRAL,,
-2236237.9450683594,Dann benötige ich Ihren Namen und Ihre E-Mail-Adresse.,neutral,tiago,,"Then, I need your name and email address.",at_customeraccount_name,during_customeraccount,customeraccount,,2.0,3.0,1.0,3.0,NEUTRAL,NEUTRAL,12.0,NEUTRAL
-2250811.451904297,Für Informationen über den Datenschutz besuchen Sie bitte unsere Webseite.,neutral,tiago,,"For information about data protection, please visit our website.",at_customeraccount_consent,during_customeraccount,customeraccount,,2.0,3.0,1.0,3.0,NEUTRAL,NEUTRAL,13.0,NEUTRAL
+2236237.9450683594,Dann benötige ich Ihren Namen und Ihre E-Mail-Adresse.,neutral,tiago,,"Then, I need your name and email address.",at_customeraccount_name,during_customeraccount,customeraccount,,2.0,3.0,1.0,3.0,NEUTRAL,NEUTRAL,13.0,NEUTRAL
+2250811.451904297,Für Informationen über den Datenschutz besuchen Sie bitte unsere Webseite.,neutral,tiago,,"For information about data protection, please visit our website.",at_customeraccount_consent,during_customeraccount,customeraccount,,2.0,3.0,1.0,3.0,NEUTRAL,NEUTRAL,14.0,NEUTRAL
 2265993.632080078,Darf ich ihnen ein Kundenkonto einrichten?,neutral,tiago,,May I set up a customer account for you?,,during_customeraccount,customeraccount,,,,1.0,3.0,,NEUTRAL,,
-2271727.999023437,Dann benötige ich Ihren Namen und Ihre E-Mail-Adresse.,neutral,tiago,,"Then, I need your name and email address.",at_customeraccount_name,during_customeraccount,customeraccount,,2.0,3.0,1.0,3.0,NEUTRAL,NEUTRAL,15.0,NEUTRAL
+2271727.999023437,Dann benötige ich Ihren Namen und Ihre E-Mail-Adresse.,neutral,tiago,,"Then, I need your name and email address.",at_customeraccount_name,during_customeraccount,customeraccount,,2.0,3.0,1.0,3.0,NEUTRAL,NEUTRAL,16.0,NEUTRAL
 2292013.7658691406,Vielen Dank.,neutral,tiago,,Thank you very much.,,during_customeraccount,customeraccount,,,,1.0,3.0,,NEUTRAL,,
 2292991.6831054688,"Das wars schon, der Rabatt wird ihnen automatisch an der Kasse angerechnet.",neutral,tiago,,That's it. The discount will be credited to you automatically at checkout.,,during_customeraccount,customeraccount,,,,1.0,3.0,,NEUTRAL,,
 2306253.283935547,Zum Entfernen von Schimmel haben wir nur dieses Produkt im Sortiment.,neutral,tiago,,"To remove mold, we have only this product in the store.",,during_mold_remover,mold_remover,,,,1.0,3.0,,NEUTRAL,,
 2310403.9079589844,Möchten Sie den Schimmelentferner kaufen?,neutral,tiago,,Do you want to buy the mold remover?,,during_mold_remover,mold_remover,,,,1.0,3.0,,NEUTRAL,,
-2316517.5080566406,"Ok, ich werde ihnen die Flasche reichen und meine Hand öffnen. Bitte seien Sie bereit, die Flasche zu übernehmen.",neutral,tiago,,"Okay, I will hand over the bottle to you and open my hand. Please be prepared to take the bottle.",at_mold_remover_handover,during_mold_remover,mold_remover,,1.0,4.0,1.0,3.0,HPVLA,NEUTRAL,20.0,HPVLA
-2323677.2680664062,,neutral,tiago,grab,,at_mold_remover_handover,during_mold_remover,mold_remover,,1.0,4.0,1.0,3.0,HPVLA,NEUTRAL,20.0,
-2331282.202148437,,neutral,tiago,handover,,at_mold_remover_handover,during_mold_remover,mold_remover,,1.0,4.0,1.0,3.0,HPVLA,NEUTRAL,20.0,
-2337451.3559570312,,neutral,tiago,neutral,,at_mold_remover_handover,during_mold_remover,mold_remover,,1.0,4.0,1.0,3.0,HPVLA,NEUTRAL,20.0,
+2316517.5080566406,"Ok, ich werde ihnen die Flasche reichen und meine Hand öffnen. Bitte seien Sie bereit, die Flasche zu übernehmen.",neutral,tiago,,"Okay, I will hand over the bottle to you and open my hand. Please be prepared to take the bottle.",at_mold_remover_handover,during_mold_remover,mold_remover,,1.0,4.0,1.0,3.0,HPVLA,NEUTRAL,21.0,HPVLA
+2323677.2680664062,,neutral,tiago,grab,,at_mold_remover_handover,during_mold_remover,mold_remover,,1.0,4.0,1.0,3.0,HPVLA,NEUTRAL,21.0,
+2331282.202148437,,neutral,tiago,handover,,at_mold_remover_handover,during_mold_remover,mold_remover,,1.0,4.0,1.0,3.0,HPVLA,NEUTRAL,21.0,
+2337451.3559570312,,neutral,tiago,neutral,,at_mold_remover_handover,during_mold_remover,mold_remover,,1.0,4.0,1.0,3.0,HPVLA,NEUTRAL,21.0,
 2340032.4409179688,Kann ich Ihnen noch mit etwas helfen?,neutral,tiago,,Is there anything else I can help you with?,,,,,,,1.0,3.0,,NEUTRAL,,
-2345919.9189453125,Dann auf Wiedersehen und einen schönen Tag!,neutral,tiago,,"Goodbye, and have a nice day!",at_goodbye,,goodbye,,1.0,4.0,1.0,3.0,HPVLA,NEUTRAL,22.0,HPVLA
+2345919.9189453125,Dann auf Wiedersehen und einen schönen Tag!,neutral,tiago,,"Goodbye, and have a nice day!",at_goodbye,,goodbye,,1.0,4.0,1.0,3.0,HPVLA,NEUTRAL,23.0,HPVLA
 4255117.0,,neutral,tiago,,,mood_post,mood_post,,second_baseline,1.0,4.0,1.0,5.0,HPVLA,HPVLA,,
 4445391.0,,neutral,tiago,,,mood_post,mood_post,,second_baseline,1.0,4.0,1.0,5.0,HPVLA,HPVLA,,

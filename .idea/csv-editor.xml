@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="C:\Users\A. Lowejatan Noori\Desktop\ground_truth.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\AFFECT-HRI\anonymized-23-10-2023\078ebcf7c9b662a90508e9e6f411707f677409eb0421c94a8aeebea9e7bda407\BVP.csv">
           <value>
             <Attribute>
@@ -206,6 +213,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\AFFECT-HRI\anonymized-23-10-2023\8727a461eded57b1f965eff371ed95a0d0ef07c455e6695e63468086375bd413\BVP.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\AFFECT-HRI\anonymized-23-10-2023\8727a461eded57b1f965eff371ed95a0d0ef07c455e6695e63468086375bd413\GSR.csv">
           <value>
             <Attribute>
@@ -312,6 +326,13 @@
           </value>
         </entry>
         <entry key="\AFFECT-HRI\anonymized-23-10-2023\d20938281e615b5089c73194169efd47fe22192e24aab2d79c4e2eac5d0693ab\GSR.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\AFFECT-HRI\anonymized-23-10-2023\d20938281e615b5089c73194169efd47fe22192e24aab2d79c4e2eac5d0693ab\ground_truth.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
