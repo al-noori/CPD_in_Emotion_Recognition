@@ -48,7 +48,7 @@ def group_cp_regions(timestamps, indices, min_gap=1):
     return regions
 
 # Load data
-base_path = Path('..', p.DATA_PATH,'b1d5f67d3ee6e58b85238a74e11cbb7a2b1881b831731ae2eb2ed1792e121638')
+base_path = Path(p.DATA_PATH,'b1d5f67d3ee6e58b85238a74e11cbb7a2b1881b831731ae2eb2ed1792e121638')
 gsr_pf = pd.read_csv(os.path.join(base_path, "GSR.csv"))
 bvp_pf = pd.read_csv(os.path.join(base_path, "BVP.csv"))
 
@@ -155,4 +155,4 @@ for a in ax:
         a.legend_.remove()
 plt.tight_layout()
 plt.show()
-plt.savefig('..' / p.PLOTS_PATH / "mcpd_plot.png", dpi=300, bbox_inches='tight')
+plt.savefig( p.PLOTS_PATH / "mcpd_plot.png", dpi=300, bbox_inches='tight')
