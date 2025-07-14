@@ -5,7 +5,8 @@ from best_threshold import best_threshold
 from point_score import point_score
 import numpy as np
 import matplotlib.pyplot as plt
-import path as p
+
+from path import DATA_PATH, PLOTS_PATH
 import pandas as pd
 import os
 from ruptures import Pelt
@@ -48,7 +49,7 @@ def group_cp_regions(timestamps, indices, min_gap=1):
     return regions
 
 # Load data
-base_path = Path(p.DATA_PATH,'b1d5f67d3ee6e58b85238a74e11cbb7a2b1881b831731ae2eb2ed1792e121638')
+base_path = Path(DATA_PATH,'b1d5f67d3ee6e58b85238a74e11cbb7a2b1881b831731ae2eb2ed1792e121638')
 gsr_pf = pd.read_csv(os.path.join(base_path, "GSR.csv"))
 bvp_pf = pd.read_csv(os.path.join(base_path, "BVP.csv"))
 
@@ -70,7 +71,7 @@ print("Y2 shape:", Y2.shape)
 print("Y reshape " , Y.reshape(-1, 1).shape)
 print("Y2 reshape " , Y2.reshape(-1, 1).shape)
 
-cp_indices_max, cp_indices, pscore, threshold = mcpd(Y, win_size=100, alpha=1)
+cp_indices_max, cp_indices, pscore, threshold = mcpd(Y, win_size=100, alpha=11)
 cp_indices_2_max, cp_indices_2, pscore2, threshold2 = mcpd(Y2, win_size=300, alpha=2)
 print(cp_indices_max, cp_indices_2, pscore, pscore2)
 print("CP Indices GSR:", cp_indices_max)
@@ -155,4 +156,4 @@ for a in ax:
         a.legend_.remove()
 plt.tight_layout()
 plt.show()
-plt.savefig( p.PLOTS_PATH / "mcpd_plot.png", dpi=300, bbox_inches='tight')
+plt.savefig( PLOTS_PATH / "mcpd_plot.png", dpi=300, bbox_inches='tight')
