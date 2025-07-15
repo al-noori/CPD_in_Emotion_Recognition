@@ -76,7 +76,7 @@ print("Y reshape " , Y.reshape(-1, 1).shape)
 print("Y2 reshape " , Y2.reshape(-1, 1).shape)
 
 cp_indices_max, cp_indices, pscore, threshold = mcpd(Y, win_size=10, alpha=2)
-cp_indices_2_max, cp_indices_2, pscore2, threshold2 = mcpd(Y2, win_size=300, alpha=2)
+cp_indices_2_max, cp_indices_2, pscore2, threshold2 = mcpd(Y2, win_size=150, alpha=2)
 print(cp_indices_max, cp_indices_2, pscore, pscore2)
 print("CP Indices GSR:", cp_indices_max)
 print("CP Indices BVP:", cp_indices_2_max)
