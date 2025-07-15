@@ -60,9 +60,15 @@ def process_participant(participant_id):
     cp_indices_gsr, _, _ = mcpd(Y_gsr, win_size=50, alpha=2)
     cp_indices_bvp, _, _ = mcpd(Y_bvp, win_size=150, alpha=2)
 
-    f1_gsr = metrics.precision_recall(cp_indices_gsr, gsr_gt_changepoints, margin=20)
-    f1_bvp = metrics.precision_recall(cp_indices_bvp, bvp_gt_changepoints, margin=320)
+    if cp_indices_gsr and gsr_gt_changepoints:
+        f1_gsr = metrics.precision_recall(cp_indices_gsr, gsr_gt_changepoints, margin=20)
+    else:
+        f1_gsr = 0.0  # or np.nan, depending on what makes sense for your analysis
 
+    if cp_indices_bvp and bvp_gt_changepoints:
+        f1_bvp = metrics.precision_recall(cp_indices_bvp, bvp_gt_changepoints, margin=320)
+    else:
+        f1_bvp = 0.0
     return {
         'participant_id': participant_id,
         'gt_gsr': gsr_gt_changepoints,
