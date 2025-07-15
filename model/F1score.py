@@ -55,9 +55,8 @@ def process_participant(participant_id):
     gsr_gt_changepoints = gsr_valid.index[gsr_valid['emotion_HRI'].notna()].tolist()
     bvp_gt_changepoints = bvp_valid.index[bvp_valid['emotion_HRI'].notna()].tolist()
 
-    Y_gsr = gsr_valid['GSR_clean'].values
-    Y_bvp = bvp_valid['BVP_clean'].values
-
+    Y_gsr = gsr[['GSR_clean', 'GSR_tonic', 'GSR_phasic', 'GSR_avg', 'GSR_std']].values[gsr['shortNTPTime'].notna()]
+    Y_bvp = bvp[['BVP_clean', 'BVP_rate', 'BVP_avg', 'BVP_std']].values[bvp['shortNTPTime'].notna()]
     cp_indices_gsr, _, _ = mcpd(Y_gsr, win_size=50, alpha=2)
     cp_indices_bvp, _, _ = mcpd(Y_bvp, win_size=150, alpha=2)
 
