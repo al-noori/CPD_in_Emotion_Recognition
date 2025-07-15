@@ -4,7 +4,7 @@ from best_threshold import best_threshold
 from point_score import point_score
 import numpy as np
 import matplotlib.pyplot as plt
-from .. import path
+import path
 import pandas as pd
 import os
 from ruptures import Pelt
