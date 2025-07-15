@@ -4,7 +4,7 @@ from best_threshold import best_threshold
 from point_score import point_score
 import numpy as np
 import matplotlib.pyplot as plt
-from path import DATA_PATH, PLOTS_PATH
+import path
 import pandas as pd
 import os
 from ruptures import Pelt
@@ -47,9 +47,9 @@ def group_cp_regions(timestamps, indices, min_gap=1):
     return regions
 
 # Load data
-base_path = Path(DATA_PATH,'b1d5f67d3ee6e58b85238a74e11cbb7a2b1881b831731ae2eb2ed1792e121638')
+base_path = Path(path.DATA_PATH,'b1d5f67d3ee6e58b85238a74e11cbb7a2b1881b831731ae2eb2ed1792e121638')
 print("Base path:", base_path)
-print(DATA_PATH, PLOTS_PATH)
+print(path.DATA_PATH, path.PLOTS_PATH)
 gsr_pf = pd.read_csv(os.path.join(base_path, "GSR.csv"))
 bvp_pf = pd.read_csv(os.path.join(base_path, "BVP.csv"))
 
@@ -154,4 +154,4 @@ for a in ax:
         a.legend_.remove()
 plt.tight_layout()
 plt.show()
-plt.savefig( PLOTS_PATH / "mcpd_plot.png", dpi=300, bbox_inches='tight')
+plt.savefig( path.PLOTS_PATH / "mcpd_plot.png", dpi=300, bbox_inches='tight')
