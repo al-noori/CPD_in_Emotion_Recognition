@@ -60,15 +60,17 @@ def process_participant(participant_id):
     cp_indices_gsr, _, _ = mcpd(Y_gsr, win_size=50, alpha=2)
     cp_indices_bvp, _, _ = mcpd(Y_bvp, win_size=150, alpha=2)
 
-    if len(cp_indices_gsr) > 0 and len(gsr_gt_changepoints) > 0:
-        f1_gsr = metrics.precision_recall(cp_indices_gsr, gsr_gt_changepoints, margin=20)
-    else:
-        f1_gsr = 0.0  # or np.nan, depending on what makes sense for your analysis
+    def safe_precision_recall(pred_bkps, true_bkps, signal_length, margin):
+        if len(pred_bkps) == 0 or pred_bkps[-1] != signal_length:
+            pred_bkps = list(pred_bkps) + [signal_length]
+        if len(true_bkps) == 0 or true_bkps[-1] != signal_length:
+            true_bkps = list(true_bkps) + [signal_length]
 
-    if len(cp_indices_bvp) > 0 and len(bvp_gt_changepoints) > 0:
-        f1_bvp = metrics.precision_recall(cp_indices_bvp, bvp_gt_changepoints, margin=320)
-    else:
-        f1_bvp = 0.0
+        return metrics.precision_recall(pred_bkps, true_bkps, margin=margin)
+
+    f1_gsr = safe_precision_recall(cp_indices_gsr, gsr_gt_changepoints, len(gsr_valid), margin=20)
+    f1_bvp = safe_precision_recall(cp_indices_bvp, bvp_gt_changepoints, len(bvp_valid), margin=320)
+
     return {
         'participant_id': participant_id,
         'gt_gsr': gsr_gt_changepoints,
