@@ -8,7 +8,6 @@ matplotlib.use('Agg')  # Must come before importing pyplot
 
 
 import matplotlib.pyplot as plt
-plt.use('Agg')  # Important!
 import path
 import pandas as pd
 import os
