@@ -63,9 +63,10 @@ def process_participant(participant_id):
     cp_indices_gsr = np.concatenate(([0], cp_indices_gsr, [len(Y_gsr) - 1]))
 
     # Calculate F1 scores
-    f1_gsr = metrics.precision_recall(gsr_gt_changepoints, cp_indices_gsr, margin=20)
-    f1_bvp = metrics.precision_recall(bvp_gt_changepoints, cp_indices_bvp, margin=320)
-
+    p1, r1 = metrics.precision_recall(gsr_gt_changepoints, cp_indices_gsr, margin=20)
+    p2, r2 = metrics.precision_recall(bvp_gt_changepoints, cp_indices_bvp, margin=320)
+    f1_gsr = 2 * (p1 * r1) / (p1 + r1) if (p1 + r1) > 0 else 0
+    f1_bvp = 2 * (p2 * r2) / (p2 + r2) if (p2 + r2) > 0 else 0
 
     return {
         'participant_id': participant_id,
@@ -99,8 +100,9 @@ for res in results:
 # Example data
 participant_ids = np.arange(1,len(F1_scores_gsr)+1)
 
+print(participant_ids.shape, F1_scores_gsr.shape, F1_scores_bvp.shape)
 # Plot
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(8, 8))
 plt.scatter(participant_ids, F1_scores_gsr, color='blue', s=80)
 plt.scatter(participant_ids, F1_scores_bvp, color='orange', s=80)
 
