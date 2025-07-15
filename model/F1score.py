@@ -32,9 +32,6 @@ def pelt_cpd(Y, model="rbf", pen=10):
     return np.array(cp_indices[:-1])
 
 
-
-dataset_dir = r"C:\Users\A. Lowejatan Noori\Desktop\ComTech1\AFFECT-HRI\anonymized-23-10-2023"
-
 gt_gsr = {}
 pred_gsr = {}
 gt_bvp = {}
@@ -44,7 +41,7 @@ F1_scores_gsr=[]
 F1_scores_bvp=[]
 
 def process_participant(participant_id):
-    part_path = os.path.join(dataset_dir, participant_id)
+    part_path = os.path.join(path.DATA_PATH, participant_id)
 
     bvp_path = os.path.join(part_path, 'BVP.csv')
     gsr_path = os.path.join(part_path, 'GSR.csv')
@@ -79,8 +76,8 @@ def process_participant(participant_id):
 
 # Get participant directories
 participants = [
-    pid for pid in os.listdir(dataset_dir)
-    if os.path.isdir(os.path.join(dataset_dir, pid))
+    pid for pid in os.listdir(path.DATA_PATH)
+    if os.path.isdir(os.path.join(path.DATA_PATH, pid))
 ]
 
 # Run in parallel
