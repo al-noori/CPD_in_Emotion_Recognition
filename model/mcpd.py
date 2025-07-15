@@ -3,7 +3,12 @@ from best_psi import best_psi
 from best_threshold import best_threshold
 from point_score import point_score
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')  # Must come before importing pyplot
+
+
 import matplotlib.pyplot as plt
+plt.use('Agg')  # Important!
 import path
 import pandas as pd
 import os
