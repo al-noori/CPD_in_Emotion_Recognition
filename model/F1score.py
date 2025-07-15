@@ -1,3 +1,100 @@
+from joblib import Parallel, delayed
+import os
+import numpy as np
+import pandas as pd
+from ruptures import metrics
+from scipy.signal import find_peaks
+from best_psi import best_psi
+from best_threshold import best_threshold
+import path
+
+def mcpd(Y, win_size=40, alpha=1):
+    """
+    Multiple Change Point Detection (MCPD) via custom model
+    """
+    pscore, _, _ = best_psi(Y, win_size)
+    threshold, _ = best_threshold(pscore, alpha)
+    indices = find_peaks(pscore, height=threshold)[0]
+    return indices, pscore, threshold
+
+
+def evaluate_participant_f1(pid, signal_type, alpha, win_size, feature_cols, margin):
+    """
+    Evaluate F1 score for one participant with given parameters.
+    """
+    try:
+        part_path = os.path.join(path.DATA_PATH, pid)
+        df = pd.read_csv(os.path.join(part_path, f'{signal_type}.csv'))
+        df_valid = df[df['shortNTPTime'].notna()].reset_index(drop=True)
+        Y = df_valid[feature_cols].values
+        gt_cp = df_valid.index[df_valid['emotion_HRI'].notna()].tolist()
+
+        pred_cp, _, _ = mcpd(Y, win_size=win_size, alpha=alpha)
+        pred_cp = np.concatenate(([0], pred_cp, [len(Y) - 1]))
+
+        p, r = metrics.precision_recall(gt_cp, pred_cp, margin=margin)
+        f1 = 2 * (p * r) / (p + r) if (p + r) > 0 else 0
+        return f1
+    except Exception as e:
+        print(f"Error processing {pid}: {e}")
+        return 0
+
+
+def global_grid_search(participants, signal_type='GSR'):
+    """
+    Run grid search across all participants to find the best alpha and win_size globally.
+    """
+    if signal_type == 'GSR':
+        alpha_range = [0, 1, 2, 3]
+        win_size_range = [10, 50, 100]
+        margin = 20
+        feature_cols = ['GSR_clean', 'GSR_tonic', 'GSR_phasic', 'GSR_avg', 'GSR_std']
+    elif signal_type == 'BVP':
+        alpha_range = [0, 1, 2, 3]
+        win_size_range = [100, 200, 300]
+        margin = 320
+        feature_cols = ['BVP_clean', 'BVP_rate', 'BVP_avg', 'BVP_std']
+    else:
+        raise ValueError("signal_type must be either 'GSR' or 'BVP'")
+
+    best_mean_f1 = -1
+    best_params = None
+
+    for alpha in alpha_range:
+        for win_size in win_size_range:
+            print(f"→ Testing {signal_type}: alpha={alpha}, win_size={win_size}")
+
+            f1_scores = Parallel(n_jobs=-1)(
+                delayed(evaluate_participant_f1)(
+                    pid, signal_type, alpha, win_size, feature_cols, margin
+                )
+                for pid in participants
+            )
+
+            mean_f1 = np.mean(f1_scores)
+            print(f"   → Mean F1: {mean_f1:.4f}")
+
+            if mean_f1 > best_mean_f1:
+                best_mean_f1 = mean_f1
+                best_params = (alpha, win_size)
+
+    print(f"\n✅ Best {signal_type} parameters: alpha={best_params[0]}, win_size={best_params[1]} → Mean F1: {best_mean_f1:.4f}")
+    return best_params, best_mean_f1
+
+
+# Main execution
+if __name__ == "__main__":
+    participants = [
+        pid for pid in os.listdir(path.DATA_PATH)
+        if os.path.isdir(os.path.join(path.DATA_PATH, pid))
+    ]
+
+    best_gsr_params, best_gsr_f1 = global_grid_search(participants, signal_type='GSR')
+    best_bvp_params, best_bvp_f1 = global_grid_search(participants, signal_type='BVP')
+
+
+
+'''
 from joblib import delayed, Parallel
 
 import path
@@ -100,7 +197,6 @@ for res in results:
 # Example data
 participant_ids = np.arange(1,len(F1_scores_gsr)+1)
 
-print(participant_ids.shape, F1_scores_gsr.shape, F1_scores_bvp.shape)
 # Plot
 plt.figure(figsize=(8, 8))
 plt.scatter(participant_ids, F1_scores_gsr, color='blue', s=80)
@@ -115,3 +211,4 @@ plt.tight_layout()
 
 plt.savefig(path.PLOTS_PATH / 'F1_scores_participants.png')
 
+'''
