@@ -95,7 +95,7 @@ for res in results:
     pred_bvp[pid] = res['pred_bvp']
     F1_scores_gsr.append(res['f1_gsr'])
     F1_scores_bvp.append(res['f1_bvp'])
-'''
+
 # Example data
 participant_ids = np.arange(1,len(F1_scores_gsr)+1)
 
@@ -113,4 +113,3 @@ plt.tight_layout()
 
 plt.savefig(path.PLOTS_PATH / 'F1_scores_participants.png')
 
-'''
