@@ -57,10 +57,14 @@ def process_participant(participant_id):
 
     Y_gsr = gsr[['GSR_clean', 'GSR_tonic', 'GSR_phasic', 'GSR_avg', 'GSR_std']].values[gsr['shortNTPTime'].notna()]
     Y_bvp = bvp[['BVP_clean', 'BVP_rate', 'BVP_avg', 'BVP_std']].values[bvp['shortNTPTime'].notna()]
-    cp_indices_gsr, _, _ = mcpd(Y_gsr, win_size=50, alpha=2)
-    cp_indices_bvp, _, _ = mcpd(Y_bvp, win_size=150, alpha=2)
-    print("GSR pred CPS:", cp_indices_gsr, "GSR Ground Truth CPS:", gsr_gt_changepoints)
-    print("BVP pred CPS:", cp_indices_bvp, "BVP Ground Truth CPS:", bvp_gt_changepoints)
+    cp_indices_gsr, _, _ = mcpd(Y_gsr, win_size=10, alpha=2)
+    cp_indices_bvp, _, _ = mcpd(Y_bvp, win_size=150, alpha=1)
+    cp_indices_bvp = np.concatenate(([0], cp_indices_bvp, [len(Y_bvp) - 1]))
+    cp_indices_gsr = np.concatenate(([0], cp_indices_gsr, [len(Y_gsr) - 1]))
+
+    # Calculate F1 scores
+    f1_gsr = metrics.precision_recall(gsr_gt_changepoints, cp_indices_gsr, margin=20)
+    f1_bvp = metrics.precision_recall(bvp_gt_changepoints, cp_indices_bvp, margin=320)
 
 
     return {
@@ -69,8 +73,8 @@ def process_participant(participant_id):
         'gt_bvp': bvp_gt_changepoints,
         'pred_gsr': cp_indices_gsr.tolist(),
         'pred_bvp': cp_indices_bvp.tolist(),
-      #  'f1_gsr': f1_gsr,
-       # 'f1_bvp': f1_bvp
+        'f1_gsr': f1_gsr,
+        'f1_bvp': f1_bvp
     }
 
 # Get participant directories
@@ -89,8 +93,8 @@ for res in results:
     gt_bvp[pid] = res['gt_bvp']
     pred_gsr[pid] = res['pred_gsr']
     pred_bvp[pid] = res['pred_bvp']
-    #F1_scores_gsr.append(res['f1_gsr'])
-   # F1_scores_bvp.append(res['f1_bvp'])
+    F1_scores_gsr.append(res['f1_gsr'])
+    F1_scores_bvp.append(res['f1_bvp'])
 '''
 # Example data
 participant_ids = np.arange(1,len(F1_scores_gsr)+1)
