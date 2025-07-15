@@ -1,12 +1,9 @@
 from pathlib import Path
-
 from best_psi import best_psi
 from best_threshold import best_threshold
 from point_score import point_score
 import numpy as np
 import matplotlib.pyplot as plt
-import sys
-print("sys.path =", sys.path)
 from p import DATA_PATH, PLOTS_PATH
 import pandas as pd
 import os
@@ -51,6 +48,8 @@ def group_cp_regions(timestamps, indices, min_gap=1):
 
 # Load data
 base_path = Path(DATA_PATH,'b1d5f67d3ee6e58b85238a74e11cbb7a2b1881b831731ae2eb2ed1792e121638')
+print("Base path:", base_path)
+print(DATA_PATH, PLOTS_PATH)
 gsr_pf = pd.read_csv(os.path.join(base_path, "GSR.csv"))
 bvp_pf = pd.read_csv(os.path.join(base_path, "BVP.csv"))
 
@@ -71,7 +70,7 @@ print("Y shape:", Y.shape)
 print("Y2 shape:", Y2.shape)
 print("Y reshape " , Y.reshape(-1, 1).shape)
 print("Y2 reshape " , Y2.reshape(-1, 1).shape)
-
+'''
 cp_indices_max, cp_indices, pscore, threshold = mcpd(Y, win_size=100, alpha=11)
 cp_indices_2_max, cp_indices_2, pscore2, threshold2 = mcpd(Y2, win_size=300, alpha=2)
 print(cp_indices_max, cp_indices_2, pscore, pscore2)
@@ -83,9 +82,9 @@ print("CP Indices Shape: ", cp_indices_max.shape)
 print("Point Score Shape: ", pscore.shape)
 print("CP Indices 2 Shape: ", cp_indices_2_max.shape)
 print("Point Score 2 Shape: ", pscore2.shape)
-
-
 '''
+
+
 # Stub for GSR
 cp_indices_max = np.array([50, 150, 300])
 cp_indices = np.array([45, 46, 47, 145, 146, 295, 296])
@@ -99,7 +98,7 @@ pscore2 = np.random.rand(len(Y2))  # Fake point scores
 threshold2 = 0.5
 print(X.shape, X2.shape)
 
-'''
+
 # GSR plot
 for _, row in gsr_pf.dropna(subset=['emotion_HRI']).iterrows():
     ax[0].axvline(x=row['shortNTPTime'] / 1000, color='black',linewidth=0.5, linestyle='-')
