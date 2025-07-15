@@ -59,17 +59,9 @@ def process_participant(participant_id):
     Y_bvp = bvp[['BVP_clean', 'BVP_rate', 'BVP_avg', 'BVP_std']].values[bvp['shortNTPTime'].notna()]
     cp_indices_gsr, _, _ = mcpd(Y_gsr, win_size=50, alpha=2)
     cp_indices_bvp, _, _ = mcpd(Y_bvp, win_size=150, alpha=2)
+    print("GSR pred CPS:", cp_indices_gsr, "GSR Ground Truth CPS:", gsr_gt_changepoints)
+    print("BVP pred CPS:", cp_indices_bvp, "BVP Ground Truth CPS:", bvp_gt_changepoints)
 
-    def safe_precision_recall(pred_bkps, true_bkps, signal_length, margin):
-        if len(pred_bkps) == 0 or pred_bkps[-1] != signal_length:
-            pred_bkps = list(pred_bkps) + [signal_length]
-        if len(true_bkps) == 0 or true_bkps[-1] != signal_length:
-            true_bkps = list(true_bkps) + [signal_length]
-
-        return metrics.precision_recall(pred_bkps, true_bkps, margin=margin)
-
-    f1_gsr = safe_precision_recall(cp_indices_gsr, gsr_gt_changepoints, len(gsr_valid), margin=20)
-    f1_bvp = safe_precision_recall(cp_indices_bvp, bvp_gt_changepoints, len(bvp_valid), margin=320)
 
     return {
         'participant_id': participant_id,
@@ -77,8 +69,8 @@ def process_participant(participant_id):
         'gt_bvp': bvp_gt_changepoints,
         'pred_gsr': cp_indices_gsr.tolist(),
         'pred_bvp': cp_indices_bvp.tolist(),
-        'f1_gsr': f1_gsr,
-        'f1_bvp': f1_bvp
+      #  'f1_gsr': f1_gsr,
+       # 'f1_bvp': f1_bvp
     }
 
 # Get participant directories
@@ -97,9 +89,9 @@ for res in results:
     gt_bvp[pid] = res['gt_bvp']
     pred_gsr[pid] = res['pred_gsr']
     pred_bvp[pid] = res['pred_bvp']
-    F1_scores_gsr.append(res['f1_gsr'])
-    F1_scores_bvp.append(res['f1_bvp'])
-
+    #F1_scores_gsr.append(res['f1_gsr'])
+   # F1_scores_bvp.append(res['f1_bvp'])
+'''
 # Example data
 participant_ids = np.arange(1,len(F1_scores_gsr)+1)
 
@@ -117,25 +109,4 @@ plt.tight_layout()
 
 plt.savefig(path.PLOTS_PATH / 'F1_scores_participants.png')
 
-'''
-IDK GSR only:
-  Precision: 0.029, Recall: 0.607, F1: 0.055
-IDK BVP only:
-  Precision: 0.002, Recall: 0.767, F1: 0.003
-
-PELT GSR only:
-  Precision: 0.289, Recall: 0.484, F1: 0.362
-PELT BVP only:
-  Precision: 0.026, Recall: 0.983, F1: 0.052
-  
-  with local maxima
-IDK GSR only:
-  Precision: 0.194, Recall: 0.493, F1: 0.279
-IDK BVP only:
-  Precision: 0.062, Recall: 0.406, F1: 0.107
-
-PELT GSR only:
-  Precision: 0.146, Recall: 0.491, F1: 0.225
-PELT BVP only:
-  Precision: 0.015, Recall: 0.989, F1: 0.029
 '''
