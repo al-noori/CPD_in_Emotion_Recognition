@@ -4,7 +4,7 @@ from best_threshold import best_threshold
 from point_score import point_score
 import numpy as np
 import matplotlib.pyplot as plt
-from p import DATA_PATH, PLOTS_PATH
+from path import DATA_PATH, PLOTS_PATH
 import pandas as pd
 import os
 from ruptures import Pelt
@@ -70,7 +70,7 @@ print("Y shape:", Y.shape)
 print("Y2 shape:", Y2.shape)
 print("Y reshape " , Y.reshape(-1, 1).shape)
 print("Y2 reshape " , Y2.reshape(-1, 1).shape)
-'''
+
 cp_indices_max, cp_indices, pscore, threshold = mcpd(Y, win_size=100, alpha=11)
 cp_indices_2_max, cp_indices_2, pscore2, threshold2 = mcpd(Y2, win_size=300, alpha=2)
 print(cp_indices_max, cp_indices_2, pscore, pscore2)
@@ -83,8 +83,6 @@ print("Point Score Shape: ", pscore.shape)
 print("CP Indices 2 Shape: ", cp_indices_2_max.shape)
 print("Point Score 2 Shape: ", pscore2.shape)
 '''
-
-
 # Stub for GSR
 cp_indices_max = np.array([50, 150, 300])
 cp_indices = np.array([45, 46, 47, 145, 146, 295, 296])
@@ -97,7 +95,7 @@ cp_indices_2 = np.array([95, 96, 97, 395, 396, 595, 596])
 pscore2 = np.random.rand(len(Y2))  # Fake point scores
 threshold2 = 0.5
 print(X.shape, X2.shape)
-
+'''
 
 # GSR plot
 for _, row in gsr_pf.dropna(subset=['emotion_HRI']).iterrows():
