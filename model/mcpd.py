@@ -69,7 +69,7 @@ print("Y2 shape:", Y2.shape)
 print("Y reshape " , Y.reshape(-1, 1).shape)
 print("Y2 reshape " , Y2.reshape(-1, 1).shape)
 
-cp_indices_max, cp_indices, pscore, threshold = mcpd(Y, win_size=50, alpha=0.5)
+cp_indices_max, cp_indices, pscore, threshold = mcpd(Y, win_size=10, alpha=2)
 cp_indices_2_max, cp_indices_2, pscore2, threshold2 = mcpd(Y2, win_size=200, alpha=2)
 '''
 cp_indices_max = np.array([50, 150, 300])
