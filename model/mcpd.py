@@ -68,21 +68,10 @@ print("Y shape:", Y.shape)
 print("Y2 shape:", Y2.shape)
 print("Y reshape " , Y.reshape(-1, 1).shape)
 print("Y2 reshape " , Y2.reshape(-1, 1).shape)
-'''
+
 cp_indices_max, cp_indices, pscore, threshold = mcpd(Y, win_size=50, alpha=0.5)
 cp_indices_2_max, cp_indices_2, pscore2, threshold2 = mcpd(Y2, win_size=200, alpha=2)
-print(cp_indices_max, cp_indices_2, pscore, pscore2)
-print("CP Indices GSR:", cp_indices_max)
-print("CP Indices BVP:", cp_indices_2_max)
-print("Point Score GSR:", pscore)
-print("Point Score BVP:", pscore2)
-print("CP Indices Shape: ", cp_indices_max.shape)
-print("Point Score Shape: ", pscore.shape)
-print("CP Indices 2 Shape: ", cp_indices_2_max.shape)
-print("Point Score 2 Shape: ", pscore2.shape)
-
 '''
-# Stub for GSR
 cp_indices_max = np.array([50, 150, 300])
 cp_indices = np.array([45, 46, 47, 145, 146, 295, 296])
 pscore = np.random.rand(len(Y))  # Fake point scores
@@ -94,7 +83,7 @@ cp_indices_2 = np.array([95, 96, 97, 395, 396, 595, 596])
 pscore2 = np.random.rand(len(Y2))  # Fake point scores
 threshold2 = 0.5
 print(X.shape, X2.shape)
-
+'''
 # GSR plot
 for _, row in gsr_pf.dropna(subset=['emotion_HRI']).iterrows():
     ax[0].axvline(x=((row['shortNTPTime'] - BEGIN) / 1000), color='black', linewidth=1, linestyle='-')
