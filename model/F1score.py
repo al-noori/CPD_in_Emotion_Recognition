@@ -63,10 +63,10 @@ def process_participant(participant_id, emotion="HPVLA"):
     pred_gsr, _, _ = mcpd(Y_gsr, win_size=50, alpha=0.5)
     pred_bvp, _, _ = mcpd(Y_bvp, win_size=200, alpha=2)
 
-    pred_bvp = np.concatenate(([0], pred_bvp, [len(Y_bvp) - 1]))
-    pred_gsr = np.concatenate(([0], pred_gsr, [len(Y_gsr) - 1]))
-    true_gsr = np.concatenate(([0], true_gsr, [len(Y_gsr) - 1]))
-    true_bvp = np.concatenate(([0], true_bvp, [len(Y_bvp) - 1]))
+    pred_bvp = np.unique(np.concatenate(([0], pred_bvp, [len(Y_bvp) - 1])))
+    pred_gsr = np.unique(np.concatenate(([0], pred_gsr, [len(Y_gsr) - 1])))
+    true_gsr = np.unique(np.concatenate(([0], true_gsr, [len(Y_gsr) - 1])))
+    true_bvp = np.unique(np.concatenate(([0], true_bvp, [len(Y_bvp) - 1])))
 
     p1, r1 = metrics.precision_recall(true_gsr, pred_gsr, margin=40)
     p2, r2 = metrics.precision_recall(true_bvp, pred_bvp, margin=640)
