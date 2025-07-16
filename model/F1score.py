@@ -126,15 +126,23 @@ recall_bvp = total_tp_bvp / (total_tp_bvp + total_fn_bvp + 1e-10)
 micro_f1_bvp = 2 * precision_bvp * recall_bvp / (precision_bvp + recall_bvp + 1e-10)
 
 # compute mae for each participant
-mae_gsr_list = []
-mae_bvp_list = []
+all_errors_gsr = []
+all_errors_bvp = []
 
 for res in results:
-    mae_gsr_list.append(compute_mae(res['pred_gsr'], res['gt_gsr']))
-    mae_bvp_list.append(compute_mae(res['pred_bvp'], res['gt_bvp']))
+    for p in res['pred_gsr']:
+        if len(res['gt_gsr']) == 0:
+            continue
+        nearest_gt = min(res['gt_gsr'], key=lambda x: abs(x - p))
+        all_errors_gsr.append(abs(p - nearest_gt))
 
-mae_gsr = np.mean(mae_gsr_list)
-mae_bvp = np.mean(mae_bvp_list)
+    for p in res['pred_bvp']:
+        if len(res['gt_bvp']) == 0:
+            continue
+        nearest_gt = min(res['gt_bvp'], key=lambda x: abs(x - p))
+        all_errors_bvp.append(abs(p - nearest_gt))
+mae_gsr = np.mean(all_errors_gsr)
+mae_bvp = np.mean(all_errors_bvp)
 
 # print results
 participant_ids = np.arange(1, len(F1_scores_gsr) + 1)
