@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import os
 
 # File paths
-base_path = r"C:\Users\A. Lowejatan Noori\Desktop\ComTech1\AFFECT-HRI\anonymized-23-10-2023\b1d5f67d3ee6e58b85238a74e11cbb7a2b1881b831731ae2eb2ed1792e121638"
+base_path = r"C:\Users\A. Lowejatan Noori\Desktop\ComTech1\data\88acdccfe1ab13225e2cb86a3fe13ba4c63d4ce9f3a38f219381c124a2ff6edc"
 gsr = pd.read_csv(os.path.join(base_path, "GSR.csv"))
 bvp = pd.read_csv(os.path.join(base_path, "BVP.csv"))
 

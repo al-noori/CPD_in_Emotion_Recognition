@@ -9,11 +9,11 @@ from scipy.spatial import KDTree
 def _max_dist(x_i, x_j):
     return np.max(np.abs(x_i - x_j))
 
-def _phi(m, r, data, batch_size=1000):
+def _phi(m, r, data):
     N = len(data)
     x = np.array([data[i:i+m] for i in range(N - m + 1)])
     C = []
-    for i in range(0, x.shape[0], batch_size):
+    for i in range(0, x.shape[0]):
         count = 0
         for j in range(0,len(x)):
             if _max_dist(x[i], x[j]) <= r:

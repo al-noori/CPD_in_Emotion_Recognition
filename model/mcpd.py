@@ -43,7 +43,7 @@ def group_cp_regions(timestamps, indices, min_gap=1):
     return regions
 
 # Load data
-base_path = Path(path.DATA_PATH,'b1d5f67d3ee6e58b85238a74e11cbb7a2b1881b831731ae2eb2ed1792e121638')
+base_path = Path(path.DATA_PATH,'88acdccfe1ab13225e2cb86a3fe13ba4c63d4ce9f3a38f219381c124a2ff6edc')
 print("Base path:", base_path)
 print(path.DATA_PATH, path.PLOTS_PATH)
 gsr_pf = pd.read_csv(os.path.join(base_path, "GSR.csv"))
@@ -58,7 +58,7 @@ X2 = (X2 - X2[0]) / 1000 # Normalize to start from 0
 
 Y = gsr_pf[['GSR_clean', 'GSR_tonic', 'GSR_phasic', 'GSR_avg', 'GSR_std']].values[gsr_pf['shortNTPTime'].notna()]
 Y2 = bvp_pf[['BVP_clean', 'BVP_rate', 'BVP_avg', 'BVP_std']].values[bvp_pf['shortNTPTime'].notna()]
-fig, ax = plt.subplots(nrows=4, ncols=1, figsize=(12, 9))
+fig, ax = plt.subplots(nrows=4, ncols=1, figsize=(10, 6))
 
 gsr_valid = gsr_pf.dropna(subset=['shortNTPTime'])
 bvp_valid = bvp_pf.dropna(subset=['shortNTPTime'])
@@ -69,7 +69,7 @@ print("Y2 shape:", Y2.shape)
 print("Y reshape " , Y.reshape(-1, 1).shape)
 print("Y2 reshape " , Y2.reshape(-1, 1).shape)
 
-cp_indices_max, cp_indices, pscore, threshold = mcpd(Y, win_size=10, alpha=2)
+cp_indices_max, cp_indices, pscore, threshold = mcpd(Y, win_size=20, alpha=2)
 cp_indices_2_max, cp_indices_2, pscore2, threshold2 = mcpd(Y2, win_size=200, alpha=2)
 '''
 cp_indices_max = np.array([50, 150, 300])

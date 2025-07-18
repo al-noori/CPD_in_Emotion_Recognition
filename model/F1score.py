@@ -81,7 +81,7 @@ def process_participant(participant_id):
     Y_gsr = gsr[['GSR_clean', 'GSR_tonic', 'GSR_phasic', 'GSR_avg', 'GSR_std']].values[gsr['shortNTPTime'].notna()]
     Y_bvp = bvp[['BVP_clean', 'BVP_rate', 'BVP_avg', 'BVP_std']].values[bvp['shortNTPTime'].notna()]
 
-    pred_gsr, _, _ = mcpd(Y_gsr, win_size=10, alpha=2)
+    pred_gsr, _, _ = mcpd(Y_gsr, win_size=20, alpha=2)
     pred_bvp, _, _ = mcpd(Y_bvp, win_size=200, alpha=2)
 
     pred_bvp = np.unique(np.concatenate(([0], pred_bvp, [len(Y_bvp) - 1])))
